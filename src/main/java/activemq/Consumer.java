@@ -36,7 +36,6 @@ public class Consumer {
 			des = session.createTopic("MyFirstTopic");
 			consumer = session.createConsumer(des);
 			consumer.setMessageListener(new MessageListener() {
-				@Override
 				public void onMessage(Message message) {
 					try {
 						System.err.println(((TextMessage) message).getText());
