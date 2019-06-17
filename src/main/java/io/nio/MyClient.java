@@ -8,11 +8,11 @@ import java.nio.channels.SocketChannel;
 public class MyClient {
 	public static void main(String[] args) throws IOException {
 		SocketChannel sc = SocketChannel.open();
-		sc.connect(new InetSocketAddress(8888));
+		sc.connect(new InetSocketAddress(38888));
 		ByteBuffer buff = ByteBuffer.allocate(1024);
 		buff.put("Hello World".getBytes());
 		buff.flip();
-//		sc.write(buff);
+		sc.write(buff);
 		buff.clear();
 //		sc.read(buff);
 //		System.err.println(new String(buff.array()));

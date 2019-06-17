@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class MyServer {
 	public static void main(String[] args) throws IOException {
-		MyServer server = new MyServer(8888);  
+		MyServer server = new MyServer(38888);
         server.listen(); 
 	}
 
@@ -26,17 +26,18 @@ public class MyServer {
 	public MyServer(int port) throws IOException {
 		// 打开服务器套接字通道
 		ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-		// 服务器配置为非阻塞
-		serverSocketChannel.configureBlocking(false);
+
 		// 检索与此通道关联的服务器套接字
 		ServerSocket serverSocket = serverSocketChannel.socket();
 		// 套接字的地址端口绑定
 		serverSocket.bind(new InetSocketAddress(port));
+		// 服务器配置为非阻塞
+		serverSocketChannel.configureBlocking(false);
 		// 通过open()方法找到Selector
 		selector = Selector.open();
 		// 注册到selector，等待连接
 		serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-		System.out.println("Server Start----8888:");
+		System.out.println("Server Start----38888:");
 		// 向发送缓冲区加入数据
 		send.put("data come from server".getBytes());
 	}
@@ -76,7 +77,7 @@ public class MyServer {
 			// 配置为非阻塞
 			client.configureBlocking(false);
 			// 注册到selector，等待连接
-			client.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
+			client.register(selector, SelectionKey.OP_READ);
 		} else if (selectionKey.isReadable()) {
 			System.out.println("selectionKey.isReadable()");
 			// 返回为之创建此键的通道。
@@ -86,7 +87,6 @@ public class MyServer {
 			// 读取服务器发送来的数据到缓冲区中
 			client.read(receive);
 			System.out.println(new String(receive.array()));
-			selectionKey.interestOps(SelectionKey.OP_WRITE);
 		} else if (selectionKey.isWritable()) {
 			System.out.println("selectionKey.isWritable()");
 			// 将缓冲区清空以备下次写入
