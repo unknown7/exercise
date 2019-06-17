@@ -21,6 +21,10 @@ public class FileChannelDemo {
             buffer.clear();
             read = channel.read(buffer);
         }
+        buffer.clear();
+        buffer.put("abc".getBytes());
+        buffer.flip();
+        channel.write(buffer);
         rw.close();
     }
 }
