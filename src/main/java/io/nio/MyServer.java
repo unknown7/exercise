@@ -10,10 +10,12 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class MyServer {
-	public static void main(String[] args) throws IOException {
-		MyServer server = new MyServer(38888);
+    private static final int PORT = 38888;
+	public static void main(String[] args) throws IOException, InterruptedException {
+		MyServer server = new MyServer(PORT);
         server.listen(); 
 	}
 
@@ -37,13 +39,13 @@ public class MyServer {
 		selector = Selector.open();
 		// 注册到selector，等待连接
 		serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-		System.out.println("Server Start----38888:");
+		System.out.println("Server Start----" + PORT + ":");
 		// 向发送缓冲区加入数据
 		send.put("data come from server".getBytes());
 	}
 
 	// 监听
-	private void listen() throws IOException {
+	private void listen() throws IOException, InterruptedException {
 		while (true) {
 			// 等待一个连接，可能会返回多个key
 			int count = selector.select();
@@ -53,9 +55,9 @@ public class MyServer {
 			Iterator<SelectionKey> iterator = selectionKeys.iterator();
 			while (iterator.hasNext()) {
 				SelectionKey selectionKey = iterator.next();
-				// 这里记得手动的把他remove掉，不然selector中的selectedKeys集合不会自动去除
-				iterator.remove();
-				handle(selectionKey);
+                handle(selectionKey);
+                // 这里记得手动的把他remove掉，不然selector中的selectedKeys集合不会自动去除
+                iterator.remove();
 			}
 		}
 	}
@@ -85,8 +87,19 @@ public class MyServer {
 			// 将缓冲区清空以备下次读取
 			receive.clear();
 			// 读取服务器发送来的数据到缓冲区中
-			client.read(receive);
-			System.out.println(new String(receive.array()));
+            int read = client.read(receive);
+            while (read != -1) {
+                receive.flip();
+                while (receive.hasRemaining()) {
+                    System.err.print((char) receive.get());
+                }
+                receive.clear();
+                System.err.println("begin read..");
+                read = client.read(receive);
+                System.err.println("end read..READ=" + read);
+            }
+            System.err.println();
+            client.close();
 		} else if (selectionKey.isWritable()) {
 			System.out.println("selectionKey.isWritable()");
 			// 将缓冲区清空以备下次写入
