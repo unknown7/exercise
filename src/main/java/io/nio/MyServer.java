@@ -21,9 +21,7 @@ public class MyServer {
 
 	private ByteBuffer send = ByteBuffer.allocate(1024);
 	private ByteBuffer receive = ByteBuffer.allocate(1024);
-	public int port = 0;
-	ServerSocketChannel ssc = null;
-	Selector selector = null;
+	Selector selector;
 
 	public MyServer(int port) throws IOException {
 		// 打开服务器套接字通道
@@ -45,7 +43,7 @@ public class MyServer {
 	}
 
 	// 监听
-	private void listen() throws IOException, InterruptedException {
+	private void listen() throws IOException {
 		while (true) {
 			// 等待一个连接，可能会返回多个key
 			int count = selector.select();
@@ -64,8 +62,8 @@ public class MyServer {
 
 	// 处理请求
 	private void handle(SelectionKey selectionKey) throws IOException {
-		ServerSocketChannel server = null;
-		SocketChannel client = null;
+		ServerSocketChannel server;
+		SocketChannel client;
 		String receiveText;
 		String sendText;
 		int count = 0;
