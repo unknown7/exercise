@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MyServer {
     private static final int PORT = 38888;
-	public static void main(String[] args) throws IOException, InterruptedException {
+	public static void main(String[] args) throws IOException {
 		MyServer server = new MyServer(PORT);
         server.listen(); 
 	}
@@ -86,17 +86,21 @@ public class MyServer {
 			receive.clear();
 			// 读取服务器发送来的数据到缓冲区中
             int read = client.read(receive);
-            while (read != -1) {
-                receive.flip();
-                while (receive.hasRemaining()) {
-                    System.err.print((char) receive.get());
-                }
-                receive.clear();
-                System.err.println("begin read..");
-                read = client.read(receive);
-                System.err.println("end read..READ=" + read);
-            }
-            System.err.println();
+			receive.flip();
+			while (receive.hasRemaining()) {
+				System.err.print((char) receive.get());
+			}
+			System.err.println();
+//            while (read != -1) {
+//                receive.flip();
+//                while (receive.hasRemaining()) {
+//                    System.err.print((char) receive.get());
+//                }
+//				System.err.println();
+//                receive.clear();
+//                read = client.read(receive);
+//            }
+//            System.err.println();
             client.close();
 		} else if (selectionKey.isWritable()) {
 			System.out.println("selectionKey.isWritable()");
