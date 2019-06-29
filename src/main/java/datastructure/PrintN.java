@@ -2,6 +2,7 @@ package datastructure;
 
 public class PrintN {
     int n;
+
     public PrintN(int n) {
         this.n = n;
     }
