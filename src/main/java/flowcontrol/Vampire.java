@@ -3,7 +3,14 @@ package flowcontrol;
 import java.util.*;
 
 public class Vampire {
+    private Inner inner1 = new Inner(1);
+    private Inner inner2;
+    private static Inner inner9 = new Inner(9);
+    public Vampire() {
+        inner2 = new Inner(2);
+    }
     public static void main(String[] args) {
+        new Vampire();
         Map<Integer, String> result = new HashMap<>();
         for (int i = 10; i < 100; i++) {
             for (int j = 10; j < 100; j++) {
@@ -48,5 +55,13 @@ public class Vampire {
             x /= 10;
         }
         return Arrays.copyOf(array, cnt);
+    }
+
+    static class Inner {
+        private int id;
+        private String str;
+        Inner(int id) {
+            System.err.println("Inner:" + id + ",str = " + str);
+        }
     }
 }
