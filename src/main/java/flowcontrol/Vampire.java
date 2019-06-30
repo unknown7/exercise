@@ -21,29 +21,23 @@ public class Vampire {
         int[] ak = int2array(k),
                 ai = int2array(i),
                 aj = int2array(j);
-        a: for (int l = 0; l < ai.length; l++) {
-            for (int m = 0; m < ak.length; m++) {
-                if (ak[m] == ai[l]) {
-                    ak[m] = -1;
-                    continue a;
-                }
-            }
-        }
-
-        b: for (int l = 0; l < aj.length; l++) {
-            for (int m = 0; m < ak.length; m++) {
-                if (ak[m] == aj[l]) {
-                    ak[m] = -1;
-                    continue b;
-                }
-            }
-        }
-
+        screen(ak, ai);
+        screen(ak, aj);
         for (int l = 0; l < ak.length; l++) {
             if (ak[l] != -1)
                 return false;
         }
         return true;
+    }
+    private static void screen(int[] source, int[] target) {
+        a: for (int l = 0; l < target.length; l++) {
+            for (int m = 0; m < source.length; m++) {
+                if (source[m] == target[l]) {
+                    source[m] = -1;
+                    continue a;
+                }
+            }
+        }
     }
     private static int[] int2array(int x) {
         int[] array = new int[10];
