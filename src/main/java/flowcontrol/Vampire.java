@@ -1,17 +1,20 @@
 package flowcontrol;
 
-import datastructure.Array;
-
-import java.util.Arrays;
+import java.util.*;
 
 public class Vampire {
     public static void main(String[] args) {
+        Map<Integer, String> result = new HashMap<>();
         for (int i = 10; i < 100; i++) {
             for (int j = 10; j < 100; j++) {
                 int k = i * j;
-                if ((k / 1000 > 0) && contains(k, i, j))
-                    System.err.println(i + " * " + j + " = " + k);
+                if ((k / 1000 > 0) && contains(k, i, j)) {
+                    result.put(k, i + " * " + j + " = " + k);
+                }
             }
+        }
+        for (Map.Entry<Integer, String> entry : result.entrySet()) {
+            System.err.println(entry.getValue());
         }
     }
     private static boolean contains(int k, int i, int j) {
