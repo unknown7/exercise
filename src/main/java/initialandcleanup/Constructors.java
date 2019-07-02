@@ -9,7 +9,7 @@ public class Constructors {
     }
 
     public static void main(String[] args) {
-        Constructor constructor = new Constructor(1);
+        new Constructor(1);
     }
 }
 class Constructor extends Constructors {
