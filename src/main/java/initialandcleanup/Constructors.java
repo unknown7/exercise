@@ -1,9 +1,9 @@
 package initialandcleanup;
 
 public class Constructors {
-    Constructors() {
-        System.err.println("Constructors..");
-    }
+//    Constructors() {
+//        System.err.println("Constructors..");
+//    }
     Constructors(int i) {
         System.err.println("Constructor..(int i)");
     }
@@ -14,9 +14,11 @@ public class Constructors {
 }
 class Constructor extends Constructors {
     Constructor() {
+        super(1);
         System.err.println("Constructor..");
     }
     Constructor(int i) {
+        super(i);
         System.err.println("Constructor..(int i)");
     }
 }
