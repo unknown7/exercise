@@ -6,7 +6,7 @@ public class A {
     }
 
     public static void main(String[] args) {
-        C c = new C();
+        C c = new C(1);
     }
 }
 class B {
@@ -17,7 +17,7 @@ class B {
 class C extends A {
     B b1 = new B(1);
     static B b2 = new B(2);
-    C() {
+    C(int i) {
         System.err.println("init c..");
     }
 }
