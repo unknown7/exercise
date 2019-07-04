@@ -10,7 +10,7 @@ public class Beetle extends Insect {
 
     public static void main(String[] args) {
         System.err.println("Beetle constructor");
-//        Beetle beetle = new Beetle();
+        Beetle beetle = new Beetle();
     }
 }
 class Insect {
