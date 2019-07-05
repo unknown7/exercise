@@ -1,6 +1,7 @@
 package reuse;
 
 public class Sandwich extends PortableLunch {
+    public int i = 1;
     private Bread bread = new Bread();
     private Cheese cheese = new Cheese();
     private Lettuce lettuce = new Lettuce();
@@ -9,10 +10,12 @@ public class Sandwich extends PortableLunch {
     }
 
     public static void main(String[] args) {
-        new Sandwich();
+        Meal meal = new Sandwich();
+        System.err.println(meal.i);
     }
 }
 class Meal {
+    public int i = 0;
     Meal() {
         System.err.println("Meal");
     }
