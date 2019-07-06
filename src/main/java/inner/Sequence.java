@@ -31,7 +31,8 @@ public class Sequence {
 
         @Override
         public void next() {
-            i++;
+            if (i < items.length)
+                i++;
         }
     }
     public Selector selector() {
