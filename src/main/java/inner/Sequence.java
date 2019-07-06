@@ -6,12 +6,12 @@ interface Selector {
     void next();
 }
 public class Sequence {
-    private int[] items;
+    private Object[] items;
     private int cur;
     public Sequence(int size) {
-        items = new int[size];
+        items = new Object[size];
     }
-    public void add(int x) {
+    public void add(Object x) {
         if (cur < items.length) {
             items[cur++] = x;
         }
