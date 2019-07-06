@@ -1,4 +1,4 @@
-package inner;
+package innerclass;
 
 interface Selector {
     boolean end();
