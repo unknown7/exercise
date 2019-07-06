@@ -50,5 +50,17 @@ public class Sequence {
             System.err.print(selector.current() + " ");
             selector.next();
         }
+
+        System.err.println();
+
+        Sequence sequence2 = new Sequence(SIZE);
+        for (int i = 0; i < SIZE; i++) {
+            sequence2.add("a" + i);
+        }
+        Selector selector2 = sequence2.selector();
+        while (!selector2.end()) {
+            System.err.print(selector2.current() + " ");
+            selector2.next();
+        }
     }
 }
