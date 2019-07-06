@@ -46,7 +46,7 @@ public class Sequence {
         }
         Selector selector = sequence.selector();
         while (!selector.end()) {
-            System.err.println(selector.current());
+            System.err.print(selector.current() + " ");
             selector.next();
         }
     }
