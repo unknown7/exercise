@@ -1,5 +1,7 @@
 package innerclass;
 
+import java.nio.channels.SelectionKey;
+
 interface Selector {
     boolean end();
     Object current();
@@ -35,8 +37,30 @@ public class Sequence {
                 i++;
         }
     }
+    private class ReverseSequenceSelector implements Selector {
+        private int i = items.length - 1;
+
+        @Override
+        public boolean end() {
+            return i == -1;
+        }
+
+        @Override
+        public Object current() {
+            return items[i];
+        }
+
+        @Override
+        public void next() {
+            if (i >= 0)
+                i--;
+        }
+    }
     public Selector selector() {
         return new SequenceSelector();
+    }
+    public Selector reverseSelector() {
+        return new ReverseSequenceSelector();
     }
 
     public static void main(String[] args) {
@@ -49,6 +73,12 @@ public class Sequence {
         while (!selector.end()) {
             System.err.print(selector.current() + " ");
             selector.next();
+        }
+        System.err.println();
+        Selector reverse = sequence.reverseSelector();
+        while (!reverse.end()) {
+            System.err.print(reverse.current() + " ");
+            reverse.next();
         }
 
         System.err.println();
