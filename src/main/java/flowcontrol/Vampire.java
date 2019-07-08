@@ -9,6 +9,7 @@ public class Vampire {
     public Vampire() {
         inner2 = new Inner(2);
     }
+
     public static void main(String[] args) {
         new Vampire();
         Map<Integer, String> result = new HashMap<>();
