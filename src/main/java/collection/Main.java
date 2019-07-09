@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		Counter counter = new Counter();
 		Generator<Character> gen = new RandomGenerator.Character();
-		for (int i = 0; i < 1000; i++)
+		for (int i = 0; i < 10000; i++)
 			counter.put(String.valueOf(gen.next()));
 		
 		counter.trim2Size();
