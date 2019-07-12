@@ -40,6 +40,9 @@ public class ZookeeperLock extends AbstractZookeeperLock {
     }
 
     public void unLock() {
-
+        if (zkClient != null) {
+            zkClient.delete(PATH);
+            System.err.println("release..");
+        }
     }
 }

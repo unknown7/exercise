@@ -9,7 +9,7 @@ public abstract class AbstractZookeeperLock implements Lock {
 
     public void lock() {
         if (tryLock()) {
-            System.err.println("get lock..");
+//            System.err.println("get lock..");
         } else {
             waitLock();
             lock();
