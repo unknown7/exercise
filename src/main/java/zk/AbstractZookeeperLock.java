@@ -17,6 +17,6 @@ public abstract class AbstractZookeeperLock implements Lock {
     }
 
     public abstract boolean tryLock();
-    public abstract boolean waitLock();
+    public abstract void waitLock();
     public abstract void unLock();
 }
