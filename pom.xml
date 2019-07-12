@@ -31,5 +31,12 @@
             <artifactId>activemq-all</artifactId>
             <version>5.14.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.4.14</version>
+        </dependency>
+
     </dependencies>
 </project>
