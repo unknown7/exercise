@@ -1,4 +1,6 @@
-package proxy;
+package proxy.jdk;
+
+import proxy.User;
 
 public class Proxy {
     public static void main(String[] args) {

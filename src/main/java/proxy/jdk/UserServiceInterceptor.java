@@ -1,4 +1,6 @@
-package proxy;
+package proxy.jdk;
+
+import proxy.User;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
