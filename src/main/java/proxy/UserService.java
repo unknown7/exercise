@@ -1,4 +1,4 @@
-package proxy.jdk;
+package proxy;
 
 import proxy.User;
 

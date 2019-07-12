@@ -1,6 +1,4 @@
-package proxy.jdk;
-
-import proxy.User;
+package proxy;
 
 public class UserServiceImpl implements UserService {
     @Override
