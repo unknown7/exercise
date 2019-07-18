@@ -6,6 +6,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class ZookeeperLock extends AbstractZookeeperLock {
     private CountDownLatch latch;
+
     public boolean tryLock() {
         try {
             zkClient.createEphemeral(PATH);
