@@ -1,7 +1,5 @@
 package innerclass;
 
-import java.nio.channels.SelectionKey;
-
 interface Selector {
     boolean end();
     Object current();
