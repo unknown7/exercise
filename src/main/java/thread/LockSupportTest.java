@@ -7,6 +7,7 @@ public class LockSupportTest {
         String s1 = null;
         String s2 = null;
         System.err.println(s1 == s2);
+        Thread.interrupted();
         LockSupport.park();
         System.err.println("block.");
     }
