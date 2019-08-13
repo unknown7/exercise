@@ -2,7 +2,7 @@ package dubbo;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("provider")
 public class ProviderImpl implements Provider {
     private static final User user;
     static {
