@@ -34,7 +34,9 @@ public class QE {
 		for (int i = 0; i < nums; i++)
 			try {
 				exec.execute(instance.newInstance());
-			} catch (InstantiationException | IllegalAccessException e) {
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}
 		exec.shutdown();

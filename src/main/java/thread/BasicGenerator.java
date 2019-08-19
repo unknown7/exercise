@@ -7,7 +7,9 @@ public class BasicGenerator {
 			public T next() {
 				try {
 					return clazz.newInstance();
-				} catch (InstantiationException | IllegalAccessException e) {
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
 					e.printStackTrace();
 				}
 				return null;

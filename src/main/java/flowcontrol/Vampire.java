@@ -12,7 +12,7 @@ public class Vampire {
 
     public static void main(String[] args) {
         new Vampire();
-        Map<Integer, String> result = new HashMap<>();
+        Map<Integer, String> result = new HashMap<Integer, String>();
         for (int i = 10; i < 100; i++) {
             for (int j = 10; j < 100; j++) {
                 int k = i * j;

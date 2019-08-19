@@ -47,7 +47,9 @@ public class Exercise10 {
 		for (Future<String> future : futures)
 			try {
 				System.err.println(future.get());
-			} catch (InterruptedException | ExecutionException e) {
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
 				e.printStackTrace();
 			}
 	}
