@@ -16,7 +16,7 @@ public class NIOTester {
         Selector selector = Selector.open();
         ServerSocketChannel ssc = ServerSocketChannel.open();
         ssc.configureBlocking(false);
-        ssc.bind(new InetSocketAddress(8080));
+//        ssc.bind(new InetSocketAddress(8080));
         ssc.register(selector, SelectionKey.OP_ACCEPT);
         while (true) {
             Set<SelectionKey> selectionKeys = selector.selectedKeys();

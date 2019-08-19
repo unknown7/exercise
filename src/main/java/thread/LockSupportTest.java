@@ -16,7 +16,7 @@ public class LockSupportTest {
 //        LockSupport.park();
 //        System.err.println("block.");
 
-        Lock lock = new ReentrantLock();
+        final Lock lock = new ReentrantLock();
         lock.lock();
         exec.execute(new Runnable() {
             @Override
