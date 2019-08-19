@@ -10,14 +10,14 @@ public class Main {
 	public static void main(String[] args) {
 		Random random = new Random();
 
-		SList<Student> list = new SList<>();
+		SList<Student> list = new SList<Student>();
 		for (int i = 0; i < NAMES.length; i++)
 			list.add(new Student(NAMES[random.nextInt(NAMES.length)], i));
 		System.err.println(list);
 
 		System.err.println("------");
 
-		SSet<Student> set = new SSet<>();
+		SSet<Student> set = new SSet<Student>();
 		for (int i = 0; set.size() < NAMES.length; i++)
 			set.add(new Student(NAMES[random.nextInt(NAMES.length)], i));
 		System.err.println(set);

@@ -65,8 +65,10 @@ abstract class Accumulator {
 				accumulate();
 			try {
 				barrier.await();
-			} catch (InterruptedException | BrokenBarrierException e) {
+			} catch (InterruptedException e) {
 				throw new RuntimeException(e);
+			} catch (BrokenBarrierException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -78,8 +80,10 @@ abstract class Accumulator {
 				value = read();
 			try {
 				barrier.await();
-			} catch (InterruptedException | BrokenBarrierException e) {
+			} catch (InterruptedException e) {
 				throw new RuntimeException(e);
+			} catch (BrokenBarrierException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -91,8 +95,10 @@ abstract class Accumulator {
 		}
 		try {
 			barrier.await();
-		} catch (InterruptedException | BrokenBarrierException e) {
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
+		} catch (BrokenBarrierException e) {
+			e.printStackTrace();
 		}
 		duration = System.nanoTime() - start;
 		System.err.printf("%-13s: %13d\n", id, duration);

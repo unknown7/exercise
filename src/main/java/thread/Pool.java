@@ -16,7 +16,9 @@ public class Pool<T> {
 		for (int i = 0; i < size; i++) {
 			try {
 				items.add(clazz.newInstance());
-			} catch (InstantiationException | IllegalAccessException e) {
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}
 		}

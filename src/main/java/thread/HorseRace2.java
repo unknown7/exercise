@@ -33,7 +33,9 @@ public class HorseRace2 {
 					strides += rand.nextInt(3);
 					barrier.await();
 				}
-			} catch (InterruptedException | BrokenBarrierException e) {
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (BrokenBarrierException e) {
 				e.printStackTrace();
 			}
 		}
