@@ -26,7 +26,7 @@ public class TestBlockingQueues {
 		Thread t = new Thread(runner);
 		t.start();
 		for (int i = 0; i < 5; i++)
-			runner.add(new LiftOff(5));
+			runner.add(new LiftOff(2));
 		getKey("Press 'Enter' (" + msg + ")");
 		t.interrupt();
 		System.err.println("Finished " + msg + " test");
