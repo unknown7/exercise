@@ -1,6 +1,6 @@
 package dubbo;
 
-import org.apache.xbean.spring.context.ClassPathXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationContext {
 
