@@ -1,5 +1,7 @@
 package algorithm.algorithms;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.Arrays;
 
 public class Stack<Item> {
@@ -32,4 +34,9 @@ public class Stack<Item> {
         }
     }
 
+    public static void main(String[] args) {
+        String json = "{\"age\":28,\"id\":\"1\",\"name\":\"Jeff\"}";
+        Vo vo = JSON.parseObject(json, Vo.class, EncryptParserConfig.global, null, JSON.DEFAULT_PARSER_FEATURE);
+        System.err.println(vo.getName());
+    }
 }
