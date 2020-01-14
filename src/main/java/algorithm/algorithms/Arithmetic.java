@@ -21,7 +21,7 @@ public class Arithmetic {
         }
     }
 
-    private static final String EXPRESSION = "(((1+2)+(3+4))*(5*6)/((2*7)+1)))";
+    private static final String EXPRESSION = "(((1+2)+(3+4))*(5*6))/((2*7)+1))";
 
     public static void main(String[] args) {
         Stack<Operator> operators = new Stack<Operator>();
