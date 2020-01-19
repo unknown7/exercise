@@ -1,37 +1,53 @@
 package excel;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
-import com.google.common.collect.Lists;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ExceptionMappingGenerator {
-    private static final String FILE_PATH = "/Users/unknown7/Documents/exception_mapping.xlsx";
-    private static final Collection SHEETS = Lists.newArrayList(
+    // 需要转换的模块 sheet name
+    private static final String[] MODULES = new String[]{
             "ykc",
             "loc",
             "lmc",
-            "lsc"
-    );
+            "lsc",
+    };
+    // 异常码开始读取所在行
     private static final int START_ROW_NUM = 2;
+    // 原始异常码开始读取所在列
     private static final int ORIGINAL_EXCEPTION_CODE_POSITION = 1;
+    // 原始异常信息开始读取所在列
     private static final int ORIGINAL_EXCEPTION_MESSAGE_POSITION = 2;
+    // 转换异常信息开始读取所在列
     private static final int TRANSFORMED_EXCEPTION_MESSAGE_POSITION = 4;
-    private String a = "INSERT INTO db_gmcf_gwc.t_gwc_exception_mapping (exception, original_code, original_message, transformed_default_code, transformed_default_message, module, dynamic_binding_switch, dynamic_binding, hidden, create_time, update_time, del_flag) VALUES ('ConstraintViolationException', null, '参数错误, 不能为空', '-1', '系统繁忙，请稍后再试', 'ykc', 1, '[{\"key\": \"/trialInterfaceWithConfig\", \"code\": \"01103010001\", \"message\": \"系统繁忙，请稍后再试【01103010001】\"}]', 0, '2019-11-15 10:45:59', '2019-11-15 10:45:59', 0);";
+    // 源文件路径
+    private static final String FILE_PATH = "/Users/unknown7/Documents/exception_mapping.xlsx";
+
+    private static final Map<String, Integer> SHEETS = new HashMap<String, Integer>() {{
+        for (String module : MODULES) {
+            put(module, 0);
+        }
+    }};
+    private static final Multimap<String, String> CODE_CONVERTED = ArrayListMultimap.create();
     private static final String TIME = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
         Workbook workbook = ExcelUtil.getWorkbook(FILE_PATH);
         int numberOfSheets = workbook.getNumberOfSheets();
-        int total = 0;
         for (int i = 0; i < numberOfSheets; i++) {
             Sheet sheet = workbook.getSheetAt(i);
-            if (sheet == null || !SHEETS.contains(sheet.getSheetName())) {
+            if (sheet == null || SHEETS.get(sheet.getSheetName()) == null) {
                 continue;
             }
             int rowNos = sheet.getLastRowNum();// 得到excel的总记录条数
@@ -82,10 +98,30 @@ public class ExceptionMappingGenerator {
                                 .append(");");
 
                         System.err.println(builder);
-                        total++;
+                        Integer curNum = SHEETS.get(MODULE);
+                        SHEETS.put(MODULE, ++curNum);
+                        CODE_CONVERTED.put(ORIGINAL_CODE, MODULE);
                     }
                 }
             }
+        }
+
+        System.err.println();
+        System.err.println("[-----------------repetitive code------------------]");
+        Map<String, Collection<String>> converted = CODE_CONVERTED.asMap();
+        for (Map.Entry<String, Collection<String>> entry : converted.entrySet()) {
+            if (entry.getValue().size() > 1) {
+                System.err.println(entry.getKey() + ": " + entry.getValue());
+            }
+        }
+
+        System.err.println();
+        System.err.println("[---------------converted statistics---------------]");
+        int total = 0;
+        for (Map.Entry<String, Integer> entry : SHEETS.entrySet()) {
+            Integer num = entry.getValue();
+            System.err.println(entry.getKey() + ": " + num);
+            total += num;
         }
         System.err.println("total: " + total);
     }
