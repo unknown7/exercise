@@ -16,6 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ExceptionMappingGenerator {
+
+    // 源文件路径
+    private static final String FILE_PATH = "/Users/unknown7/Documents/exception_mapping.xlsx";
     // 需要转换的模块 sheet name
     private static final String[] MODULES = new String[]{
             "ykc",
@@ -31,8 +34,6 @@ public class ExceptionMappingGenerator {
     private static final int ORIGINAL_EXCEPTION_MESSAGE_POSITION = 2;
     // 转换异常信息开始读取所在列
     private static final int TRANSFORMED_EXCEPTION_MESSAGE_POSITION = 4;
-    // 源文件路径
-    private static final String FILE_PATH = "/Users/unknown7/Documents/exception_mapping.xlsx";
 
     private static final Map<String, Integer> SHEETS = new HashMap<String, Integer>() {{
         for (String module : MODULES) {
