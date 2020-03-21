@@ -2,7 +2,6 @@ package algorithm.algorithms;
 
 public class Vo {
     private int id;
-    @Encrypt
     private String name;
     private int age;
 
