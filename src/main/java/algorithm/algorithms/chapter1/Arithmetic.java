@@ -1,4 +1,4 @@
-package algorithm.algorithms;
+package algorithm.algorithms.chapter1;
 
 public class Arithmetic {
 
@@ -71,7 +71,7 @@ public class Arithmetic {
         }
         System.err.println(numbers.pop());
 
-        ArrayStack<Integer> stack = new ArrayStack<>();
+        Stack<Integer> stack = new ArrayStack<>();
         stack.push(1);
         stack.push(2);
         stack.push(3);

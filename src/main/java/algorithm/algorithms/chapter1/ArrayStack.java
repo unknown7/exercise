@@ -1,18 +1,18 @@
-package algorithm.algorithms;
+package algorithm.algorithms.chapter1;
 
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class ArrayStack<Item> implements Iterable<Item> {
-    private Item[] arr = (Item[]) new Object[10];
+public class ArrayStack<T> implements Stack<T> {
+    private T[] arr = (T[]) new Object[10];
     private int size = 0;
 
-    public void push(Item item) {
+    public void push(T item) {
         ensureCapacity();
         arr[size++] = item;
     }
 
-    public Item pop() {
+    public T pop() {
         if (!isEmpty())
             return arr[--size];
         return null;
@@ -28,18 +28,18 @@ public class ArrayStack<Item> implements Iterable<Item> {
 
     private void ensureCapacity() {
         if (size + 1 >= arr.length) {
-            Item[] newArr = Arrays.copyOf(arr, size << 1);
+            T[] newArr = Arrays.copyOf(arr, size << 1);
             arr = newArr;
         }
         if (size <= arr.length / 4) {
-            Item[] newArr = Arrays.copyOf(arr, arr.length >> 1);
+            T[] newArr = Arrays.copyOf(arr, arr.length >> 1);
             arr = newArr;
         }
     }
 
     @Override
-    public Iterator<Item> iterator() {
-        return new Iterator<Item>() {
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
             int i = size;
             @Override
             public boolean hasNext() {
@@ -47,7 +47,7 @@ public class ArrayStack<Item> implements Iterable<Item> {
             }
 
             @Override
-            public Item next() {
+            public T next() {
                 return arr[--i];
             }
         };

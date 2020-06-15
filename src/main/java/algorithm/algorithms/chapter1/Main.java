@@ -1,4 +1,4 @@
-package algorithm.chapter1;
+package algorithm.algorithms.chapter1;
 
 public class Main {
 
