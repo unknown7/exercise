@@ -51,6 +51,9 @@ public class LinkedQueue<T> implements Queue<T> {
             T value = first.value;
             first = first.next;
             size--;
+            if (isEmpty()) {
+                last = null;
+            }
             return value;
         }
         throw new RuntimeException();
