@@ -1,5 +1,8 @@
 package algorithm.algorithms.chapter1;
 
+import algorithm.algorithms.chapter1.stack.ArrayStack;
+import algorithm.algorithms.chapter1.stack.Stack;
+
 public class Arithmetic {
 
     private enum Operator {

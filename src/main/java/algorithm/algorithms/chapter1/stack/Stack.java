@@ -1,4 +1,4 @@
-package algorithm.algorithms.chapter1;
+package algorithm.algorithms.chapter1.stack;
 
 public interface Stack<T> extends Iterable<T> {
 

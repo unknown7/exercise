@@ -1,4 +1,4 @@
-package algorithm.algorithms.chapter1;
+package algorithm.algorithms.chapter1.stack;
 
 import java.util.Arrays;
 import java.util.Iterator;

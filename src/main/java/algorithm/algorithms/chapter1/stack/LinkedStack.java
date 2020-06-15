@@ -1,4 +1,4 @@
-package algorithm.algorithms.chapter1;
+package algorithm.algorithms.chapter1.stack;
 
 import java.util.Iterator;
 
@@ -27,7 +27,7 @@ public class LinkedStack<T> implements Stack<T> {
     }
 
     public boolean isEmpty() {
-        return size > 0;
+        return size == 0;
     }
 
     public int size() {
