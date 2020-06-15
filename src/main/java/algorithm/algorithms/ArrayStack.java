@@ -1,8 +1,9 @@
 package algorithm.algorithms;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
-public class Stack<Item> {
+public class ArrayStack<Item> implements Iterable<Item> {
     private Item[] arr = (Item[]) new Object[10];
     private int size = 0;
 
@@ -31,8 +32,24 @@ public class Stack<Item> {
             arr = newArr;
         }
         if (size <= arr.length / 4) {
-            Item[] newArr = Arrays.copyOf(arr, size >> 1);
+            Item[] newArr = Arrays.copyOf(arr, arr.length >> 1);
             arr = newArr;
         }
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new Iterator<Item>() {
+            int i = size;
+            @Override
+            public boolean hasNext() {
+                return i > 0;
+            }
+
+            @Override
+            public Item next() {
+                return arr[--i];
+            }
+        };
     }
 }

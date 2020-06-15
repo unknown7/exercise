@@ -24,8 +24,8 @@ public class Arithmetic {
     private static final String EXPRESSION = "(((1+2)+(3+4))*(5*6))/((2*7)+1))";
 
     public static void main(String[] args) {
-        Stack<Operator> operators = new Stack<Operator>();
-        Stack<Integer> numbers = new Stack<Integer>();
+        ArrayStack<Operator> operators = new ArrayStack<>();
+        ArrayStack<Integer> numbers = new ArrayStack<>();
 
         for (int i = 0; i < EXPRESSION.length(); i++) {
             String value = String.valueOf(EXPRESSION.charAt(i));
@@ -70,5 +70,14 @@ public class Arithmetic {
             }
         }
         System.err.println(numbers.pop());
+
+        ArrayStack<Integer> stack = new ArrayStack<>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.push(999);
+        for (Integer i : stack) {
+            System.err.println(i);
+        }
     }
 }
