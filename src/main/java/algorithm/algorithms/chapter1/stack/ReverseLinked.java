@@ -26,10 +26,12 @@ public class ReverseLinked {
         System.err.println();
 
         Node<Integer> reverse = reverse(first);
-        while (reverse != null) {
-            System.err.print(reverse.value);
+        Node<Integer> backToOrigin = reverse(reverse, reverse.next);
+
+        while (backToOrigin != null) {
+            System.err.print(backToOrigin.value);
             System.err.print(" ");
-            reverse = reverse.next;
+            backToOrigin = backToOrigin.next;
         }
     }
 
@@ -45,6 +47,16 @@ public class ReverseLinked {
                 third = third.next;
         }
         return first;
+    }
+
+    private static Node<Integer> reverse(Node<Integer> first, Node<Integer> second) {
+        if (second == null)
+            return first;
+        Node<Integer> next = second.next;
+        second.next = first;
+        if (first.next == second)
+            first.next = null;
+        return reverse(second, next);
     }
 
     private static class Node<T> {
