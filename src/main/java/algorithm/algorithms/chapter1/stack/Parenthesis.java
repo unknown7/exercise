@@ -1,7 +1,5 @@
-package algorithm.algorithms.chapter1.queue;
+package algorithm.algorithms.chapter1.stack;
 
-import algorithm.algorithms.chapter1.stack.LinkedStack;
-import algorithm.algorithms.chapter1.stack.Stack;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
@@ -28,7 +26,7 @@ public class Parenthesis {
                 stack.push(s);
             } else {
                 String pop = stack.pop();
-                if (Arrays.stream(COUPLES).noneMatch(item -> item.isCouple(pop, s))){
+                if (Arrays.stream(COUPLES).noneMatch(item -> item.isCouple(pop, s))) {
                     return false;
                 }
             }
