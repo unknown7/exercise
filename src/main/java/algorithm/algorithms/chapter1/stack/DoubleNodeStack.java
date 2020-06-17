@@ -16,19 +16,10 @@ public class DoubleNodeStack<T> implements Stack<T> {
 		stack.addBeforeIndex(1, 101);
 		stack.addAfter(1, 999);
 		stack.addTail(-1);
+		stack.remove(50);
 		while (!stack.isEmpty()) {
 			System.err.println(stack.pop());
 		}
-		/**
-		 * 4
-		 * 101
-		 * 99
-		 * 3
-		 * 2
-		 * 50
-		 * 1
-		 * -1
-		 */
 	}
 
     private DoubleNode head;
@@ -250,8 +241,28 @@ public class DoubleNodeStack<T> implements Stack<T> {
 		}
     }
 
-    public T remove(T key){
-        return null;
+    public void remove(T key){
+		DoubleNode node = head;
+		while (node != null) {
+			if (node.value.equals(key)) {
+				DoubleNode previous = node.previous;
+				DoubleNode next = node.next;
+				if (previous != null) {
+					previous.next = next;
+				} else {
+					head = next;
+				}
+				if (next != null) {
+					next.previous = previous;
+				} else {
+					tail = previous;
+				}
+				size--;
+				return;
+			}
+			node = node.next;
+		}
+		throw new RuntimeException();
     }
 
     private class DoubleNode {
