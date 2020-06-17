@@ -13,9 +13,22 @@ public class DoubleNodeStack<T> implements Stack<T> {
 		stack.push(4);
 		stack.addBefore(3, 99);
 		stack.addAfterIndex(3, 50);
+		stack.addBeforeIndex(1, 101);
+		stack.addAfter(1, 999);
+		stack.addTail(-1);
 		while (!stack.isEmpty()) {
 			System.err.println(stack.pop());
 		}
+		/**
+		 * 4
+		 * 101
+		 * 99
+		 * 3
+		 * 2
+		 * 50
+		 * 1
+		 * -1
+		 */
 	}
 
     private DoubleNode head;
@@ -122,7 +135,11 @@ public class DoubleNodeStack<T> implements Stack<T> {
                 add.value = value;
                 add.previous = previous;
                 add.next = node;
-                previous.next = add;
+                if (previous != null) {
+					previous.next = add;
+				} else {
+                	head = add;
+				}
                 node.previous = add;
                 size++;
                 return;
@@ -141,7 +158,11 @@ public class DoubleNodeStack<T> implements Stack<T> {
                 add.value = value;
                 add.previous = node;
                 add.next = next;
-                next.previous = add;
+                if (next != null) {
+					next.previous = add;
+				} else {
+                	tail = add;
+				}
                 node.next = add;
                 size++;
                 return;
@@ -152,6 +173,9 @@ public class DoubleNodeStack<T> implements Stack<T> {
     }
 
     public void addBeforeIndex(int index, T value) {
+    	if (index >= size || index < 0) {
+    		throw new RuntimeException();
+		}
         DoubleNode node;
         int mid = size / 2;
         int begin;
@@ -166,7 +190,7 @@ public class DoubleNodeStack<T> implements Stack<T> {
             node = tail;
         } else {
 			begin = 0;
-			operator = i -> i++;
+			operator = i -> ++i;
 			comparator = i -> i < mid;
 			iterator = n -> n.next;
             node = head;
@@ -188,6 +212,9 @@ public class DoubleNodeStack<T> implements Stack<T> {
     }
 
     public void addAfterIndex(int index, T value) {
+		if (index >= size || index < 0) {
+			throw new RuntimeException();
+		}
 		DoubleNode node;
 		int mid = size / 2;
 		int begin;
@@ -202,7 +229,7 @@ public class DoubleNodeStack<T> implements Stack<T> {
 			node = tail;
 		} else {
 			begin = 0;
-			operator = i -> i++;
+			operator = i -> ++i;
 			comparator = i -> i < mid;
 			iterator = n -> n.next;
 			node = head;
