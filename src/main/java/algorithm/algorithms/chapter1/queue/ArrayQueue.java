@@ -11,6 +11,8 @@ public class ArrayQueue<T> implements Queue<T> {
 
     private int size = 0;
 
+    private int index = 0;
+
     @Override
     public void enqueue(T value) {
         ensureCapacity();
@@ -20,8 +22,10 @@ public class ArrayQueue<T> implements Queue<T> {
     @Override
     public T dequeue() {
         ensureCapacity();
-        T value = arr[--size];
-        arr[size] = null;
+        T value = arr[index];
+        arr[index] = null;
+        index++;
+        size--;
         return value;
     }
 
