@@ -1,10 +1,8 @@
 package algorithm.algorithms.chapter2;
 
-import algorithm.Utils;
-
 import java.util.Arrays;
 
-public class SelectSort {
+public class Selection {
 
 	public static void main(String[] args) {
 		int[] a = {7, 3, 1, 9 ,2, 19, 22, 24, 21, 11};
@@ -20,7 +18,7 @@ public class SelectSort {
 					min = j;
 				}
 			}
-			Utils.swap(a, i, min);
+			Exchanger.exchange(a, i, min);
 		}
 	}
 }
