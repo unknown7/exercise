@@ -13,6 +13,11 @@ public class UnionFindMain {
 		uf2.union(6, 2);
 		uf2.union(1, 6);
 		System.err.println(uf2.count());
+
+		UnionFind uf3 = new WeightedQuickUnion(count);
+		uf3.union(6, 2);
+		uf3.union(1, 6);
+		System.err.println(uf3.count());
 	}
 
 
