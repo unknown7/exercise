@@ -1,10 +1,10 @@
 package algorithm;
 
 public class Utils {
-	public static void swap(int[] a, int index1, int index2) {
-		if (index1 == index2) return;
-		a[index1] = a[index1] ^ a[index2];
-		a[index2] = a[index1] ^ a[index2];
-		a[index1] = a[index1] ^ a[index2];
+	public static void swap(int[] a, int i, int j) {
+		if (i == j) return;
+		a[i] = a[i] ^ a[j];
+		a[j] = a[i] ^ a[j];
+		a[i] = a[i] ^ a[j];
 	}
 }
