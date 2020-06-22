@@ -25,7 +25,9 @@ public class Merge {
 		int mid = lo + (hi - lo) / 2;
 		sort(a, lo, mid);
 		sort(a, mid + 1, hi);
-		merge(a, lo, mid, hi);
+		if (mid == 0 || a[mid] > a[mid + 1]) {
+			merge(a, lo, mid, hi);
+		}
 	}
 
 
