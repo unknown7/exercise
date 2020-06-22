@@ -3,9 +3,8 @@ package algorithm;
 public class Egg {
 
     public static void main(String[] args) {
-        int i = 9;
         try {
-            for (;;) {
+            for (int i = 9; ; i++) {
                 if (
                     i % 1 == 0 &&
                     i % 2 == 1 &&
@@ -20,11 +19,9 @@ public class Egg {
                     System.err.println("筐里最少有" + i + "个鸡蛋。");
                     return;
                 }
-                i++;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.println(i);
         }
     }
 }
