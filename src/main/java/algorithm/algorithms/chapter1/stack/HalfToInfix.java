@@ -13,7 +13,7 @@ public class HalfToInfix {
                 String right = stack.pop();
                 String operator = stack.pop();
                 String left = stack.pop();
-                stack.push("(" + left + operator + right + ")");
+                stack.push("(" + left + operator + right + s);
             } else {
                 stack.push(s);
             }

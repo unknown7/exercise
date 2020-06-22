@@ -18,8 +18,8 @@ public class EvaluatePostfix {
         Stack<Double> stack = new ArrayStack<>();
         for (String s : EXPRESSION.split(EMPTY)) {
             if (OPERATORS.contains(s)) {
-                Double left = stack.pop();
                 Double right = stack.pop();
+                Double left = stack.pop();
                 double result = Operator.getByCharacter(s).orElseThrow(RuntimeException::new).operator.operate(left, right);
                 stack.push(result);
             } else {
