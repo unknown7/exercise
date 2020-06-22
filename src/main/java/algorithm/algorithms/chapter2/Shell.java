@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Shell {
 
 	public static void main(String[] args) {
-		int[] a = {7, 3, 1, 9 ,2, 19, 22, 24, 21, 11, 283, 123};
+		int[] a = {7, 3, 1, 9, 2, 19, 22, 24, 21, 11, 283, 123};
 		shell(a);
 		System.err.println(Arrays.toString(a));
 	}
@@ -21,7 +21,7 @@ public class Shell {
 
 		while (h >= 1) {
 			for (int i = h; i < n; i++) {
-				for (int j = i; j >= h && a[j] < a[j - h]; j-=h) {
+				for (int j = i; j >= h && a[j] < a[j - h]; j -= h) {
 					System.err.println("h:" + h + " " + Arrays.toString(a));
 					Exchanger.exchange(a, j, j - h);
 				}
@@ -39,7 +39,7 @@ public class Shell {
 
 		while (h >= 1) {
 			for (int i = h; i < n; i++) {
-				for (int j = i; j >= h && a[j] < a[j - h]; j-=h) {
+				for (int j = i; j >= h && a[j] < a[j - h]; j -= h) {
 					Exchanger.exchange(a, j, j - 1);
 				}
 			}
