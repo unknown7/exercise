@@ -11,7 +11,7 @@ public class Selection2 implements Sorter {
 					min = j;
 				}
 			}
-			Helper.exchange(a, i, min);
+			Helper.exch(a, i, min);
 		}
 	}
 }

@@ -8,7 +8,7 @@ public class Insertion implements Sorter {
 			 * 中断循环，值得思考，nice
 			 */
 			for (int j = i; j > 0 && a[j] < a[j - 1]; j--) {
-				Helper.exchange(a, j, j - 1);
+				Helper.exch(a, j, j - 1);
 			}
 		}
 	}

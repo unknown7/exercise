@@ -31,9 +31,9 @@ public class Quick2 implements Sorter {
 			if (i >= j) {
 				break;
 			}
-			Helper.exchange(a, i, j);
+			Helper.exch(a, i, j);
 		}
-		Helper.exchange(a, lo, j);
+		Helper.exch(a, lo, j);
 		return j;
 	}
 }

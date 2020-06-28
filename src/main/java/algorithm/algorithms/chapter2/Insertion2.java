@@ -6,7 +6,7 @@ public class Insertion2 implements Sorter {
 		int n = a.length;
 		for (int i = 1; i < n; i++) {
 			for (int j = i; j > 0 && a[j - 1] > a[j]; j--) {
-				Helper.exchange(a, j, j - 1);
+				Helper.exch(a, j, j - 1);
 			}
 		}
 	}

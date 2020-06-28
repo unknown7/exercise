@@ -11,7 +11,7 @@ public class Shell2 implements Sorter {
 		while (k > 0) {
 			for (int i = k; i < n; i++) {
 				for (int j = i; j >= k && a[j - k] > a[j]; j-=k) {
-					Helper.exchange(a, j - k, j);
+					Helper.exch(a, j - k, j);
 				}
 			}
 			k /= 3;

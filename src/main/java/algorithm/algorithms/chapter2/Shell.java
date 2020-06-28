@@ -18,7 +18,7 @@ public class Shell implements Sorter {
 			for (int i = h; i < n; i++) {
 				for (int j = i; j >= h && a[j] < a[j - h]; j -= h) {
 					System.err.println("h:" + h + " " + Arrays.toString(a));
-					Helper.exchange(a, j, j - h);
+					Helper.exch(a, j, j - h);
 				}
 			}
 			h /= 3;
@@ -35,7 +35,7 @@ public class Shell implements Sorter {
 		while (h >= 1) {
 			for (int i = h; i < n; i++) {
 				for (int j = i; j >= h && a[j] < a[j - h]; j -= h) {
-					Helper.exchange(a, j, j - 1);
+					Helper.exch(a, j, j - 1);
 				}
 			}
 			h /= 3;

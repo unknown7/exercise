@@ -10,7 +10,7 @@ public class Selection implements Sorter {
 					min = j;
 				}
 			}
-			Helper.exchange(a, i, min);
+			Helper.exch(a, i, min);
 		}
 	}
 }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Helper {
 
-	public static void exchange(int[] a, int i, int j) {
+	public static void exch(int[] a, int i, int j) {
 		if (i == j) return;
 		a[i] = a[i] ^ a[j];
 		a[j] = a[i] ^ a[j];
