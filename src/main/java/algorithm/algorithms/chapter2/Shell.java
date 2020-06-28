@@ -2,15 +2,10 @@ package algorithm.algorithms.chapter2;
 
 import java.util.Arrays;
 
-public class Shell {
+public class Shell implements Sorter {
 
-	public static void main(String[] args) {
-		int[] a = {7, 3, 1, 9, 2, 19, 22, 24, 21, 11, 283, 123};
-		shell(a);
-		System.err.println(Arrays.toString(a));
-	}
-
-	static void sort(int[] a) {
+	@Override
+	public void sort(int[] a) {
 		int n = a.length;
 		int h = 1;
 
@@ -23,7 +18,7 @@ public class Shell {
 			for (int i = h; i < n; i++) {
 				for (int j = i; j >= h && a[j] < a[j - h]; j -= h) {
 					System.err.println("h:" + h + " " + Arrays.toString(a));
-					Exchanger.exchange(a, j, j - h);
+					Helper.exchange(a, j, j - h);
 				}
 			}
 			h /= 3;
@@ -40,7 +35,7 @@ public class Shell {
 		while (h >= 1) {
 			for (int i = h; i < n; i++) {
 				for (int j = i; j >= h && a[j] < a[j - h]; j -= h) {
-					Exchanger.exchange(a, j, j - 1);
+					Helper.exchange(a, j, j - 1);
 				}
 			}
 			h /= 3;

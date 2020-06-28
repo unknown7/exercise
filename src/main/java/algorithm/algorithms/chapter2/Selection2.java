@@ -1,11 +1,12 @@
 package algorithm.algorithms.chapter2;
 
-public class Selection implements Sorter {
-
+public class Selection2 implements Sorter {
+	@Override
 	public void sort(int[] a) {
-		for (int i = 0; i < a.length; i++) {
+		int n = a.length;
+		for (int i = 0; i < n; i++) {
 			int min = i;
-			for (int j = i + 1; j < a.length; j++) {
+			for (int j = i + 1; j < n; j++) {
 				if (a[j] < a[min]) {
 					min = j;
 				}
