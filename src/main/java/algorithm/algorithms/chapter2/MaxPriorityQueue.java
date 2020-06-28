@@ -11,8 +11,12 @@ public class MaxPriorityQueue {
 
 	public MaxPriorityQueue(int[] a) {
 		pq = new int[a.length + 1];
-		for (int i = 0; i < a.length; i++) {
-			insert(a[i]);
+		n = a.length;
+		for (int i = 1; i < pq.length; i++) {
+			pq[i] = a[i - 1];
+		}
+		for (int i = n / 2; i > 0; i--) {
+			sink(i);
 		}
 	}
 

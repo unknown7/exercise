@@ -18,10 +18,6 @@ public class Helper {
 	}
 
 	public static void main(String[] args) {
-		int[] a = {7, 3, 1, 9, 2, 19, 22, 24, 21, 11, 283, 123};
-		MaxPriorityQueue pq = new MaxPriorityQueue(a);
-		for (int i = 0; i < a.length; i++) {
-			System.err.println(pq.delMax());
-		}
+		test(new Heap());
 	}
 }
