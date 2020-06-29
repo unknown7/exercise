@@ -19,5 +19,17 @@ public class Helper {
 
 	public static void main(String[] args) {
 		test(new Shell2());
+
+		int[] a = {7, 3, 1, 9, 2, 19, 22, 24, 21, 11, 283, 123};
+		MaxPriorityQueue2 pq = new MaxPriorityQueue2(a);
+		System.err.println("capacity:" + pq.capacity());
+		pq.insert(6);
+		System.err.println("capacity:" + pq.capacity());
+		while (!pq.isEmpty()) {
+			System.err.print(pq.delMax());
+			if (!pq.isEmpty()) {
+				System.err.print(", ");
+			}
+		}
 	}
 }
