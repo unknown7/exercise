@@ -1,13 +1,17 @@
 package algorithm.algorithms.chapter2;
 
 public class Merge2 implements Sorter {
+
 	private static int[] aux;
+
 	@Override
 	public void sort(int[] a) {
-		aux = new int[a.length];
-		sort(a, 0, a.length - 1);
+		int n = a.length;
+		aux = new int[n];
+		sort(a, 0, n  -1);
 	}
-	private static void sort(int[] a, int lo, int hi) {
+
+	private void sort(int[] a, int lo, int hi) {
 		if (lo >= hi) return;
 		int mid = lo + (hi - lo) / 2;
 		sort(a, lo, mid);
@@ -16,7 +20,8 @@ public class Merge2 implements Sorter {
 			merge(a, lo, mid, hi);
 		}
 	}
-	private static void merge(int[] a, int lo, int mid, int hi) {
+
+	private void merge(int[] a, int lo, int mid, int hi) {
 		for (int i = lo; i <= hi; i++) {
 			aux[i] = a[i];
 		}

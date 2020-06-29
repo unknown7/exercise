@@ -10,8 +10,8 @@ public class Shell2 implements Sorter {
 		}
 		while (k > 0) {
 			for (int i = k; i < n; i++) {
-				for (int j = i; j >= k && a[j - k] > a[j]; j-=k) {
-					Helper.exch(a, j - k, j);
+				for (int j = i; j >= k && a[j] < a[j - k]; j-=k) {
+					Helper.exch(a, j, j - k);
 				}
 			}
 			k /= 3;

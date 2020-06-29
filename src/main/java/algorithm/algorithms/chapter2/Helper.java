@@ -18,6 +18,6 @@ public class Helper {
 	}
 
 	public static void main(String[] args) {
-		test(new Heap());
+		test(new Shell2());
 	}
 }
