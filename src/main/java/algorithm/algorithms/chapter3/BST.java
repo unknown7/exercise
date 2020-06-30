@@ -2,6 +2,15 @@ package algorithm.algorithms.chapter3;
 
 public class BST<K extends Comparable<K>, V> {
 
+	public static void main(String[] args) {
+		BST<Integer, Integer> bst = new BST<>();
+		bst.put(5, 5);
+		bst.put(2, 2);
+		bst.put(6, 6);
+		bst.put(3, 3);
+		System.err.println(bst.floor(4));
+	}
+
 	private Node root;
 
 	public void put(K key, V value) {
@@ -35,6 +44,54 @@ public class BST<K extends Comparable<K>, V> {
 			return get(key, node.left);
 		} else {
 			return node.value;
+		}
+	}
+
+	public K min() {
+		if (root == null) return null;
+		return min(root).key;
+	}
+
+	private Node min(Node node) {
+		if (node.left == null) return node;
+		return min(node.left);
+	}
+
+	public K max() {
+		if (root == null) return null;
+		return max(root).key;
+	}
+
+	private Node max(Node node) {
+		if (node.right == null) return node;
+		return max(node.right);
+	}
+
+	public K floor(K key) {
+		if (root == null) return null;
+		Node floor = floor(key, root);
+		if (floor == null) return null;
+		return floor.key;
+	}
+
+	private Node floor(K key, Node node) {
+		int c = key.compareTo(node.key);
+		if (c < 0) {
+
+			if (node.left != null) {
+				return floor(key, node.left);
+			} else {
+				return null;
+			}
+		} else if (c > 0) {
+
+			if (node.right != null) {
+				return floor(key, node.right);
+			} else {
+				return node;
+			}
+		} else {
+			return node;
 		}
 	}
 
