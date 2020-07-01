@@ -8,7 +8,7 @@ public class BST<K extends Comparable<K>, V> {
 		bst.put(2, 2);
 		bst.put(6, 6);
 		bst.put(3, 3);
-		System.err.println(bst.floor(4));
+		System.err.println(bst.ceiling(4));
 	}
 
 	private Node root;
@@ -68,31 +68,35 @@ public class BST<K extends Comparable<K>, V> {
 	}
 
 	public K floor(K key) {
-		if (root == null) return null;
 		Node floor = floor(key, root);
 		if (floor == null) return null;
 		return floor.key;
 	}
 
 	private Node floor(K key, Node node) {
+		if (node == null) return null;
 		int c = key.compareTo(node.key);
-		if (c < 0) {
+		if (c == 0) return node;
+		else if (c < 0) return floor(key, node.left);
+		Node floor = floor(key, node.right);
+		if (floor != null) return floor;
+		else return node;
+	}
 
-			if (node.left != null) {
-				return floor(key, node.left);
-			} else {
-				return null;
-			}
-		} else if (c > 0) {
+	public K ceiling(K key) {
+		Node ceiling = ceiling(key, root);
+		if (ceiling == null) return null;
+		return ceiling.key;
+	}
 
-			if (node.right != null) {
-				return floor(key, node.right);
-			} else {
-				return node;
-			}
-		} else {
-			return node;
-		}
+	private Node ceiling(K key, Node node) {
+		if (node == null) return null;
+		int c = key.compareTo(node.key);
+		if (c == 0) return node;
+		if (c > 0) return ceiling(key, node.right);
+		Node ceiling = ceiling(key, node.left);
+		if (ceiling != null) return ceiling;
+		else return node;
 	}
 
 	public int size() {
