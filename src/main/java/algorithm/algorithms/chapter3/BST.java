@@ -8,7 +8,7 @@ public class BST<K extends Comparable<K>, V> {
 		bst.put(2, 2);
 		bst.put(6, 6);
 		bst.put(3, 3);
-		System.err.println(bst.ceiling(4));
+		System.err.println(bst.rank(7));
 	}
 
 	private Node root;
@@ -97,6 +97,32 @@ public class BST<K extends Comparable<K>, V> {
 		Node ceiling = ceiling(key, node.left);
 		if (ceiling != null) return ceiling;
 		else return node;
+	}
+
+	public K select(int k) {
+		Node select = select(k, root);
+		if (select == null) return null;
+		else return select.key;
+	}
+
+	private Node select(int k, Node node) {
+		if (node == null) return null;
+		int t = size(node.left);
+		if (t > k) return select(k, node.left);
+		else if (t < k) return select(k - t - 1, node.right);
+		else return node;
+	}
+
+	public int rank(K key) {
+		return rank(key, root);
+	}
+
+	private int rank(K key, Node node) {
+		if (node == null) return 0;
+		int c = key.compareTo(node.key);
+		if (c < 0) return rank(key, node.left);
+		else if (c > 0) return 1 + size(node.left) + rank(key, node.right);
+		else return size(node.left);
 	}
 
 	public int size() {
