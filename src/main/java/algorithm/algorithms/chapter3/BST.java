@@ -8,7 +8,7 @@ public class BST<K extends Comparable<K>, V> {
 		bst.put(2, 2);
 		bst.put(6, 6);
 		bst.put(3, 3);
-		System.err.println(bst.rank(7));
+		System.err.println(bst.rank(3));
 	}
 
 	private Node root;
@@ -102,7 +102,7 @@ public class BST<K extends Comparable<K>, V> {
 	public K select(int k) {
 		Node select = select(k, root);
 		if (select == null) return null;
-		else return select.key;
+		return select.key;
 	}
 
 	private Node select(int k, Node node) {
