@@ -10,9 +10,10 @@ public class BST2<K extends Comparable<K>, V> {
 		bst2.put(1, "one");
 		bst2.put(2, "two");
 		for (int i = 0; i < bst2.size(); i++) {
-			System.err.println(bst2.get(bst2.select(i)));
+			Integer key = bst2.select(i);
+			String value = bst2.get(key);
+			System.err.println("index:" + bst2.rank(key) + ", key:" + key + ", value:" + value);
 		}
-		System.err.println(bst2.rank(20));
 	}
 
 	private Node root;
