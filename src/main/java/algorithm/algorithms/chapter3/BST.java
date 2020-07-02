@@ -125,6 +125,20 @@ public class BST<K extends Comparable<K>, V> {
 		else return size(node.left);
 	}
 
+	public void deleteMin() {
+		root = deleteMin(root);
+	}
+
+	private Node deleteMin(Node node) {
+		if (node == null)
+			return null;
+		if (node.left == null)
+			return node.right;
+		node.left = deleteMin(node.left);
+		node.n = size(node.left) + size(node.right) + 1;
+		return node;
+	}
+
 	public int size() {
 		return size(root);
 	}
