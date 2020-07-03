@@ -8,7 +8,9 @@ public class BST<K extends Comparable<K>, V> {
 		bst.put(2, 2);
 		bst.put(6, 6);
 		bst.put(3, 3);
-		System.err.println(bst.rank(3));
+		for (int i = 0; i < bst.size(); i++) {
+			System.err.println(bst.select(i));
+		}
 	}
 
 	private Node root;
@@ -135,6 +137,27 @@ public class BST<K extends Comparable<K>, V> {
 		if (node.left == null)
 			return node.right;
 		node.left = deleteMin(node.left);
+		node.n = size(node.left) + size(node.right) + 1;
+		return node;
+	}
+
+	public void delete(K key) {
+		root = delete(key, root);
+	}
+
+	private Node delete(K key, Node node) {
+		if (node == null) return null;
+		int c = key.compareTo(node.key);
+		if (c < 0) node.left = delete(key, node.left);
+		else if (c > 0) node.right = delete(key, node.right);
+		else {
+			if (node.left == null) return node.right;
+			if (node.right == null) return node.left;
+			Node t = node;
+			node = min(t.right);
+			node.right = deleteMin(t.right);
+			node.left = t.left;
+		}
 		node.n = size(node.left) + size(node.right) + 1;
 		return node;
 	}
