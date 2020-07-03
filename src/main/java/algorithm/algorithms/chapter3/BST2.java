@@ -4,15 +4,17 @@ public class BST2<K extends Comparable<K>, V> {
 
 	public static void main(String[] args) {
 		BST2<Integer, String> bst2 = new BST2<>();
-		bst2.put(9, "nine");
+		bst2.put(6, "six");
 		bst2.put(3, "three");
-		bst2.put(7, "seven");
+		bst2.put(9, "nine");
 		bst2.put(1, "one");
 		bst2.put(2, "two");
+		bst2.put(7, "seven");
+		bst2.put(8, "eight");
+		bst2.put(5, "five");
+		bst2.delete(5);
 		for (int i = 0; i < bst2.size(); i++) {
-			Integer key = bst2.select(i);
-			String value = bst2.get(key);
-			System.err.println("index:" + bst2.rank(key) + ", key:" + key + ", value:" + value);
+			System.err.println(bst2.get(bst2.select(i)));
 		}
 	}
 
@@ -24,7 +26,7 @@ public class BST2<K extends Comparable<K>, V> {
 
 	private Node put(K key, V value, Node node) {
 		if (node == null)
-			return new Node(key, value, 1);
+			return new Node(1, key, value);
 		int c = key.compareTo(node.key);
 		if (c < 0)
 			node.left = put(key, value, node.left);
@@ -55,28 +57,30 @@ public class BST2<K extends Comparable<K>, V> {
 			return node;
 	}
 
-	public K min() {
-		if (root == null)
-			return null;
-		return min(root).key;
-	}
-
-	private Node min(Node node) {
-		if (node.left == null)
-			return node;
-		return min(node.left);
-	}
-
 	public K max() {
-		if (root == null)
+		Node max = max(root);
+		if (max == null)
 			return null;
-		return max(root).key;
+		return max.key;
 	}
 
 	private Node max(Node node) {
 		if (node.right == null)
 			return node;
 		return max(node.right);
+	}
+
+	public K min() {
+		Node min = min(root);
+		if (min == null)
+			return null;
+		return min.key;
+	}
+
+	private Node min(Node node) {
+		if (node.left == null)
+			return node;
+		return min(node.left);
 	}
 
 	public K floor(K key) {
@@ -97,8 +101,7 @@ public class BST2<K extends Comparable<K>, V> {
 		Node floor = floor(key, node.right);
 		if (floor != null)
 			return floor;
-		else
-			return node;
+		return node;
 	}
 
 	public K ceiling(K key) {
@@ -119,8 +122,7 @@ public class BST2<K extends Comparable<K>, V> {
 		Node ceiling = ceiling(key, node.left);
 		if (ceiling != null)
 			return ceiling;
-		else
-			return node;
+		return node;
 	}
 
 	public K select(int index) {
@@ -150,12 +152,62 @@ public class BST2<K extends Comparable<K>, V> {
 		if (node == null)
 			return 0;
 		int c = key.compareTo(node.key);
-		if (c < 0)
-			return rank(key, node.left);
-		else if (c > 0)
-			return 1 + size(node.left) + rank(key, node.right);
-		else
+		if (c == 0)
 			return size(node.left);
+		else if (c < 0)
+			return rank(key, node.left);
+		else
+			return 1 + size(node.left) + rank(key, node.right);
+	}
+
+	public void deleteMax() {
+		root = deleteMax(root);
+	}
+
+	private Node deleteMax(Node node) {
+		if (node == null)
+			return null;
+		if (node.right == null)
+			return node;
+		return deleteMax(node.right);
+	}
+
+	public void deleteMin() {
+		root = deleteMin(root);
+	}
+
+	private Node deleteMin(Node node) {
+		if (node == null)
+			return null;
+		if (node.left == null)
+			return node;
+		return deleteMin(node.left);
+	}
+
+	public void delete(K key) {
+		root = delete(key, root);
+	}
+
+	private Node delete(K key, Node node) {
+		if (node == null)
+			return null;
+		int c = key.compareTo(node.key);
+		if (c < 0)
+			node.left = delete(key, node.left);
+		else if (c > 0)
+			node.right = delete(key, node.right);
+		else {
+			if (node.left == null)
+				return node.right;
+			if (node.right == null)
+				return node.left;
+			Node t = node;
+			node = min(t.right);
+			node.right = deleteMin(t.right);
+			node.left = t.left;
+		}
+		node.n = size(node.left) + size(node.right) + 1;
+		return node;
 	}
 
 	public int size() {
@@ -169,16 +221,15 @@ public class BST2<K extends Comparable<K>, V> {
 	}
 
 	private class Node {
-		private Node left;
-		private Node right;
+		private Node left, right;
+		private int n;
 		private K key;
 		private V value;
-		private int n;
 
-		Node(K key, V value, int n) {
+		public Node(int n, K key, V value) {
+			this.n = n;
 			this.key = key;
 			this.value = value;
-			this.n = n;
 		}
 	}
 }
