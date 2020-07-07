@@ -168,8 +168,10 @@ public class BST2<K extends Comparable<K>, V> {
 		if (node == null)
 			return null;
 		if (node.right == null)
-			return node;
-		return deleteMax(node.right);
+			return node.left;
+		node.right = deleteMax(node.right);
+		node.n = size(node.left) + size(node.right) + 1;
+		return node;
 	}
 
 	public void deleteMin() {
@@ -180,8 +182,10 @@ public class BST2<K extends Comparable<K>, V> {
 		if (node == null)
 			return null;
 		if (node.left == null)
-			return node;
-		return deleteMin(node.left);
+			return node.right;
+		node.left = deleteMin(node.left);
+		node.n = size(node.left) + size(node.right) + 1;
+		return node;
 	}
 
 	public void delete(K key) {
