@@ -1,6 +1,6 @@
 package algorithm.algorithms;
 
-public class LinkReversePartition {
+public class LinkSkipReverse {
 
 	public static void main(String[] args) {
 		Node root = new Node(1);
