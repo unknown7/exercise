@@ -2,12 +2,6 @@ package algorithm.algorithms.chapter3;
 
 public class SeparateChainingHashSymbolTable<K, V> {
 
-	private int m;
-
-	private int n;
-
-	private Entry<K, V>[] entries;
-
 	public static void main(String[] args) {
 		SeparateChainingHashSymbolTable<Integer, String> table = new SeparateChainingHashSymbolTable<>(8);
 		table.put(1, "one");
@@ -24,6 +18,12 @@ public class SeparateChainingHashSymbolTable<K, V> {
 		System.err.println(table.get(11));
 		System.err.println(table.delete(10));
 	}
+
+	private int m;
+
+	private int n;
+
+	private Entry<K, V>[] entries;
 
 	public SeparateChainingHashSymbolTable(int m) {
 		this.m = m;
@@ -59,6 +59,7 @@ public class SeparateChainingHashSymbolTable<K, V> {
 	}
 
 	public V delete(K key) {
+		ensureCapacity();
 		int index = indexOf(key);
 		Entry<K, V> entry = entries[index];
 		if (entry != null && entry.key.equals(key)) {
