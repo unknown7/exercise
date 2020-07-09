@@ -21,6 +21,8 @@ public class SeparateChainingHashSymbolTable<K, V> {
 		table.put(9, "nine");
 		table.put(10, "ten");
 		table.put(11, "eleven");
+		System.err.println(table.get(11));
+		System.err.println(table.delete(10));
 	}
 
 	public SeparateChainingHashSymbolTable(int m) {
@@ -52,6 +54,26 @@ public class SeparateChainingHashSymbolTable<K, V> {
 				return entry.value;
 			}
 			entry = entry.next;
+		}
+		return null;
+	}
+
+	public V delete(K key) {
+		int index = indexOf(key);
+		Entry<K, V> entry = entries[index];
+		if (entry != null && entry.key.equals(key)) {
+			entries[index] = entry.next;
+			n--;
+			return entry.value;
+		}
+		while (entry != null && entry.next != null) {
+			Entry<K, V> next = entry.next;
+			if (next.key.equals(key)) {
+				entry.next = next.next;
+				n--;
+				return next.value;
+			}
+			entry = next;
 		}
 		return null;
 	}
