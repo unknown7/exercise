@@ -59,7 +59,6 @@ public class SeparateChainingHashSymbolTable<K, V> {
 	}
 
 	public V delete(K key) {
-		ensureCapacity();
 		int index = indexOf(key);
 		Entry<K, V> entry = entries[index];
 		if (entry != null && entry.key.equals(key)) {
@@ -76,6 +75,7 @@ public class SeparateChainingHashSymbolTable<K, V> {
 			}
 			entry = next;
 		}
+		ensureCapacity();
 		return null;
 	}
 

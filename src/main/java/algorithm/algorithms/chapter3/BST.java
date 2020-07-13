@@ -8,6 +8,7 @@ public class BST<K extends Comparable<K>, V> {
 		bst.put(2, 2);
 		bst.put(6, 6);
 		bst.put(3, 3);
+		bst.deleteMin();
 		for (int i = 0; i < bst.size(); i++) {
 			System.err.println(bst.select(i));
 		}
