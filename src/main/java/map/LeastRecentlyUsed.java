@@ -6,7 +6,7 @@ import java.util.Map;
 public class LeastRecentlyUsed {
 	private static final float DEFAULT_LOAD_FACTOR = 0.75f;
 	public static void main(String[] args) {
-		Map<Integer, String> map = new LinkedHashMap<Integer, String>(6, DEFAULT_LOAD_FACTOR, true);
+		Map<Integer, String> map = new LinkedHashMap<>(6, DEFAULT_LOAD_FACTOR, true);
 		map.putAll(new CountingMapData(6));
 		System.err.println(map);
 		
