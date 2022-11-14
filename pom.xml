@@ -23,7 +23,7 @@
     <properties>
         <java.version>8</java.version>
         <skipTests>true</skipTests>
-        <spring.version>3.2.17.RELEASE</spring.version>
+        <spring.version>3.2.18.RELEASE</spring.version>
         <aspectjrt.version>1.5.4</aspectjrt.version>
         <aspectjweaver.version>1.8.9</aspectjweaver.version>
     </properties>
